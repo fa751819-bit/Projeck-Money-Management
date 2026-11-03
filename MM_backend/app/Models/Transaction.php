@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Category;
 
 class Transaction extends Model
 {
@@ -16,6 +17,7 @@ class Transaction extends Model
         'amount',
         'description',
         'transaction_date',
+        'category_id',
     ];
 
     protected $casts = [
@@ -26,5 +28,10 @@ class Transaction extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function categoryRelation()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }
